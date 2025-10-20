@@ -186,7 +186,7 @@
               </div>
 
               <!-- Income List -->
-              <div class="section">
+              <div class="section income-history-section">
                 <h3>📋 Inkomsthistorik för månaden</h3>
                 <div
                   id="incomeList"
@@ -212,41 +212,6 @@
                 </div>
               </div>
 
-              <!-- Total Summary -->
-              <div class="section summary-card">
-                <h2>📊 Summering (Inkomster - Utgifter)</h2>
-                <div class="summary-explanation">
-                  <p>
-                    <strong>Formel:</strong> Total inkomst - Total utgifter =
-                    Kvarvarande
-                  </p>
-                </div>
-                <div class="summary-breakdown">
-                  <div class="summary-row">
-                    <span class="summary-label">Total inkomst:</span>
-                    <span id="summaryIncome" class="summary-amount positive"
-                      >0 kr</span
-                    >
-                  </div>
-                  <div class="summary-row">
-                    <span class="summary-label">Total utgifter:</span>
-                    <span id="summaryExpenses" class="summary-amount negative"
-                      >0 kr</span
-                    >
-                  </div>
-                  <div class="summary-row total-row">
-                    <span class="summary-label">Kvarvarande:</span>
-                    <span
-                      id="totalRemaining"
-                      class="total-amount"
-                      aria-label="Kvarvarande efter utgifter"
-                    >
-                      0 kr
-                    </span>
-                  </div>
-                </div>
-              </div>
-
               <!-- Actions -->
               <div class="section actions-section">
                 <button
@@ -256,6 +221,43 @@
                 >
                   Spara
                 </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Summary - Moved outside panels to appear at bottom on mobile -->
+          <div class="summary-section">
+            <div class="section summary-card">
+              <h2>📊 Summering (Inkomster - Utgifter)</h2>
+              <div class="summary-explanation">
+                <p>
+                  <strong>Formel:</strong> Total inkomst - Total utgifter =
+                  Kvarvarande
+                </p>
+              </div>
+              <div class="summary-breakdown">
+                <div class="summary-row">
+                  <span class="summary-label">Total inkomst:</span>
+                  <span id="summaryIncome" class="summary-amount positive"
+                    >0 kr</span
+                  >
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Total utgifter:</span>
+                  <span id="summaryExpenses" class="summary-amount negative"
+                    >0 kr</span
+                  >
+                </div>
+                <div class="summary-row total-row">
+                  <span class="summary-label">Kvarvarande:</span>
+                  <span
+                    id="totalRemaining"
+                    class="total-amount"
+                    aria-label="Kvarvarande efter utgifter"
+                  >
+                    0 kr
+                  </span>
+                </div>
               </div>
             </div>
           </div>
