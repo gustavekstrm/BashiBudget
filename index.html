@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bashins Budget 💛</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="stage">
+        <!-- Start Screen -->
+        <section id="startCard" class="start-screen">
+          <div class="start-content">
+            <h1 class="brand-title">💛 Bashins Budget</h1>
+            <p class="start-description">
+              <span class="greeting">Hej älskling!</span><br />
+              Jag skapade en hemsida så att du kan bygga upp en budget för nästa
+              månad utefter dina inkomster och utgifter. Kom ihåg att skriva i
+              var dina pengar går här bara så ska vi lyckas spara pengar. Ha en
+              fin dag, älskar dig!
+            </p>
+            <p class="storage-notice">
+              Klicka "Starta Bashins Budget" första gången och "Ladda Bashins
+              Budget" när du ska lägga in en utgift framöver.
+            </p>
+            <div class="start-actions">
+              <button
+                id="startBtn"
+                class="btn btn-primary"
+                aria-label="Starta Bashins Budget"
+              >
+                Starta Bashins Budget 💛
+              </button>
+              <button
+                id="loadBtn"
+                class="btn btn-secondary"
+                aria-label="Ladda Bashins Budget"
+              >
+                Ladda Bashins Budget 💛
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="dashboard" style="display: none">
+          <!-- Header -->
+          <header class="header-row">
+            <h1 class="brand-title">💛 Bashins Budget</h1>
+          </header>
+
+          <!-- Main Grid -->
+          <div class="grid">
+            <!-- Left Panel: Budget & Expenses -->
+            <div class="panel left-panel">
+              <!-- Budget Table -->
+              <div class="section">
+                <h2>📝 Steg 2: Skapa budget utefter inkomsterna</h2>
+                <p class="budget-instruction">
+                  När du har registrerat inkomsterna ovan, fördela dem över
+                  kategorierna nedan.
+                </p>
+                <div class="table-container">
+                  <table
+                    id="budgetTable"
+                    role="table"
+                    aria-label="Budget tabell med kategorier och belopp"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Kategori</th>
+                        <th>Startbudget</th>
+                        <th>Utgifter</th>
+                        <th>Återstående</th>
+                      </tr>
+                    </thead>
+                    <tbody id="budgetBody">
+                      <!-- Rendered by JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+                <div class="budget-actions">
+                  <button
+                    id="saveBudgetBtn"
+                    class="btn btn-primary"
+                    aria-label="Spara budget"
+                  >
+                    💾 Spara budget
+                  </button>
+                </div>
+              </div>
+
+              <!-- Register Expense -->
+              <div class="section">
+                <h3>💸 Steg 3: Registrera utgifter under månaden</h3>
+                <div class="form-group">
+                  <label for="expenseCategory">Kategori:</label>
+                  <select
+                    id="expenseCategory"
+                    aria-label="Välj kategori för utgift"
+                  >
+                    <!-- Populated by JavaScript -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="expenseDesc">Beskrivning:</label>
+                  <input
+                    type="text"
+                    id="expenseDesc"
+                    placeholder="Vad köpte du?"
+                    aria-label="Beskrivning av utgift"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="expenseAmount">Belopp (kr):</label>
+                  <input
+                    type="number"
+                    id="expenseAmount"
+                    step="0.01"
+                    min="0"
+                    placeholder="0.00"
+                    aria-label="Belopp i kronor"
+                  />
+                </div>
+                <button
+                  id="addExpenseBtn"
+                  class="btn btn-primary"
+                  aria-label="Lägg till utgift"
+                >
+                  Lägg till utgift
+                </button>
+              </div>
+
+              <!-- Recent Transactions -->
+              <div class="section">
+                <h3>Senaste transaktioner</h3>
+                <div
+                  id="txList"
+                  class="transaction-list"
+                  role="list"
+                  aria-label="Lista över senaste utgifter"
+                >
+                  <!-- Rendered by JavaScript -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Panel: Income & Summary -->
+            <div class="panel right-panel">
+              <!-- Income First -->
+              <div class="section income-section">
+                <h2>💰 Steg 1: Registrera inkomster för månaden</h2>
+                <div class="form-group">
+                  <label for="incomeSource">Källa:</label>
+                  <select id="incomeSource" aria-label="Välj inkomstkälla">
+                    <option value="CSN">CSN</option>
+                    <option value="Jobb">Jobb</option>
+                    <option value="Extra">Extra</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="incomeAmount">Belopp (kr):</label>
+                  <input
+                    type="number"
+                    id="incomeAmount"
+                    step="0.01"
+                    min="0"
+                    placeholder="0.00"
+                    aria-label="Inkomstbelopp i kronor"
+                  />
+                </div>
+                <button
+                  id="addIncomeBtn"
+                  class="btn btn-primary"
+                  aria-label="Lägg till inkomst"
+                >
+                  Lägg till inkomst
+                </button>
+              </div>
+
+              <!-- Income List -->
+              <div class="section">
+                <h3>📋 Inkomsthistorik för månaden</h3>
+                <div
+                  id="incomeList"
+                  class="income-list"
+                  role="list"
+                  aria-label="Lista över inkomster"
+                >
+                  <!-- Rendered by JavaScript -->
+                </div>
+              </div>
+
+              <!-- Total Income Display -->
+              <div class="section income-total-section">
+                <h3>💰 Total inkomst denna månad</h3>
+                <div class="income-total-display">
+                  <span
+                    id="totalIncome"
+                    class="income-total-amount"
+                    aria-label="Total inkomst för månaden"
+                  >
+                    0 kr
+                  </span>
+                </div>
+              </div>
+
+              <!-- Total Summary -->
+              <div class="section summary-card">
+                <h2>📊 Summering (Inkomster - Utgifter)</h2>
+                <div class="summary-explanation">
+                  <p>
+                    <strong>Formel:</strong> Total inkomst - Total utgifter =
+                    Kvarvarande
+                  </p>
+                </div>
+                <div class="summary-breakdown">
+                  <div class="summary-row">
+                    <span class="summary-label">Total inkomst:</span>
+                    <span id="summaryIncome" class="summary-amount positive"
+                      >0 kr</span
+                    >
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Total utgifter:</span>
+                    <span id="summaryExpenses" class="summary-amount negative"
+                      >0 kr</span
+                    >
+                  </div>
+                  <div class="summary-row total-row">
+                    <span class="summary-label">Kvarvarande:</span>
+                    <span
+                      id="totalRemaining"
+                      class="total-amount"
+                      aria-label="Kvarvarande efter utgifter"
+                    >
+                      0 kr
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="section actions-section">
+                <button
+                  id="saveBtn"
+                  class="btn btn-primary save-main-btn"
+                  aria-label="Spara data"
+                >
+                  Spara
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <footer class="footer-row">
+            <button
+              id="exportBtn"
+              class="btn btn-secondary"
+              aria-label="Exportera data som JSON"
+            >
+              Exportera (JSON)
+            </button>
+            <button
+              id="resetBtn"
+              class="btn btn-secondary"
+              aria-label="Återställ all data"
+            >
+              Återställ data (Ny månad)
+            </button>
+          </footer>
+        </section>
+      </div>
+    </div>
+
+    <!-- 
+    README & TESTSTEG för Bashins Budget
+    
+    LOCALSTORAGE KEY: bashinsBudgetData_v1
+    
+    TESTSTEG:
+    1. Start: öppna index.html, klicka "Starta Bashins Budget 💛", dashboard visas
+    2. Budget: skriv 2000 i Mat-kolumn → stäng & öppna sidan → värdet finns kvar
+    3. Utgift: välj Mat, belopp 45.5, beskrivning "Lunch" → transaktionen visas i listan
+    4. Ta bort: klicka "Ta bort" på en transaktion → totals uppdateras
+    5. Exportera: klicka "Exportera (JSON)" → JSON-fil laddas ner
+    6. Återställ: klicka "Återställ data" → rensa localStorage och återställ default-data
+    7. Mobil: öppna i small viewport, kontrollera att layouten är läsbar
+    
+    DATASTRUKTUR (localStorage):
+    {
+      "expenseCategories": ["Hyra","Mat","Egenvård","Transport","Nöje","Abonnemang","Kläder","Presenter","Resor","Hälsa & träning","Sparande","Övrigt"],
+      "incomeCategories": ["CSN","Jobb","Extra"],
+      "budgets": {"Mat": 2500, "Hyra": 6500},
+      "expenses": [{"id": 12345, "category":"Mat","amount":45.5,"desc":"Lunch","date":"2025-01-20T..."}],
+      "incomes": [{"id": 67890, "source":"Jobb","amount":12000,"date":"2025-01-01T..."}]
+    }
+    -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
