@@ -135,8 +135,6 @@ body {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
 .header-row {
@@ -382,11 +380,6 @@ input[type="number"] {
 }
 
 /* ===== SUMMERING & TOTALS ===== */
-.summary-section {
-    padding: 0 var(--spacing-lg);
-    margin-top: var(--spacing-lg);
-}
-
 .summary-card {
     background: linear-gradient(135deg, var(--leaf-yellow), var(--soft-orange));
     color: var(--accent-text);
@@ -571,12 +564,6 @@ input[type="number"] {
         transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
-        order: -2; /* Ensure grid comes before summary section */
-    }
-    
-    /* Make sure summary section comes at the bottom */
-    .summary-section {
-        order: 10;
     }
     
     /* Ensure right panel (Steg 1) shows first on mobile */
@@ -623,11 +610,6 @@ input[type="number"] {
         gap: var(--spacing-xs);
     }
     
-    /* Keep income section at top, summary at bottom */
-    .summary-section {
-        padding: 0 var(--spacing-sm);
-        margin-top: var(--spacing-lg);
-    }
 }
 
 @media (max-width: 520px) {
@@ -686,12 +668,6 @@ input[type="number"] {
         font-weight: 700;
     }
     
-    /* Ensure summary stays at bottom on small mobile too */
-    .summary-section {
-        padding: 0 var(--spacing-xs);
-        margin-top: var(--spacing-md);
-        order: 10;
-    }
     
     /* Dölj vissa kolumner på mobil för utrymme */
     .table-container {
