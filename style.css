@@ -39,6 +39,10 @@ Excel-liknande tabeller med tydlig numerisk formatering
     /* Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    
+    /* Responsive breakpoints */
+    --mobile-breakpoint: 900px;
+    --small-mobile-breakpoint: 520px;
 }
 
 /* ===== GRUNDLÄGGANDE LAYOUT ===== */
@@ -162,12 +166,14 @@ body {
     grid-template-columns: 1fr 420px;
     gap: var(--spacing-lg);
     padding: var(--spacing-lg);
+    transition: all 0.3s ease;
 }
 
 .panel {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
+    transition: gap 0.3s ease;
 }
 
 /* ===== SEKTIONER ===== */
@@ -176,6 +182,7 @@ body {
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
 }
 
 .section h2 {
@@ -515,10 +522,38 @@ input[type="number"] {
 }
 
 /* ===== MOBIL ANPASSNING ===== */
+
+/* Large tablets and small desktops */
+@media (max-width: 1100px) {
+    .grid {
+        grid-template-columns: 1fr 380px;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+    }
+}
+
+/* Tablets */
 @media (max-width: 900px) {
+    /* Smooth zoom out effect for mobile */
+    body {
+        font-size: 15px;
+        transition: font-size 0.3s ease;
+    }
+    
     .grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
+        padding: var(--spacing-sm);
+        transition: all 0.3s ease;
+    }
+    
+    /* Ensure right panel (Steg 1) shows first on mobile */
+    .right-panel {
+        order: -1;
+    }
+    
+    .left-panel {
+        order: 1;
     }
     
     .header-row {
@@ -530,11 +565,28 @@ input[type="number"] {
         gap: var(--spacing-sm);
         text-align: center;
     }
+    
+    /* Responsive section padding */
+    .section {
+        padding: var(--spacing-sm);
+        transition: padding 0.3s ease;
+    }
+    
+    /* Improve summary for tablets */
+    .summary-row {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
 }
 
 @media (max-width: 520px) {
+    /* Extra zoom out for small mobile */
+    body {
+        font-size: 13px;
+    }
+    
     .wrap {
-        padding: var(--spacing-sm);
+        padding: var(--spacing-xs);
     }
     
     .start-screen {
@@ -542,7 +594,7 @@ input[type="number"] {
     }
     
     .brand-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .dashboard {
@@ -550,12 +602,37 @@ input[type="number"] {
     }
     
     .grid {
-        padding: var(--spacing-sm);
+        padding: var(--spacing-xs);
         gap: var(--spacing-sm);
     }
     
     .section {
         padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Improve summary section on mobile */
+    .summary-card {
+        padding: var(--spacing-md);
+    }
+    
+    .summary-breakdown {
+        gap: var(--spacing-xs);
+    }
+    
+    .summary-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
+    .summary-label {
+        font-size: var(--font-size-small);
+    }
+    
+    .summary-amount {
+        font-size: 1.1rem;
+        font-weight: 700;
     }
     
     /* Dölj vissa kolumner på mobil för utrymme */
